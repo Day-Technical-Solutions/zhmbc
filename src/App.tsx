@@ -4,6 +4,7 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import AppSidebar from "./components/AppSidebar";
 import { BrowserRouter } from "react-router-dom";
+import placeholder from "/public/images/placeholder.svg";
 
 export default function Home() {
   return (
@@ -18,7 +19,7 @@ export default function Home() {
                 {/* Hero Section */}
                 <section className="relative h-[600px]">
                   <img
-                    src="public/images/placeholder.svg"
+                    src={placeholder}
                     alt="Church"
                     className="brightness-50 w-full max-h-full object-cover"
                   />
