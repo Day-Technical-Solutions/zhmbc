@@ -2,4 +2,4 @@
 
 Zion Hope Missionary Baptist Church Landing Page.
 
-Git deployment Vercel
+Git deployment Vercel update
