@@ -1,4 +1,5 @@
-# zhmbc
-Zion Hope Missionary Baptist Church 
 
-Landing page first commit
+# React + TypeScript + Vite
+
+
+Zion Hope Missionary Baptist Church Landing Page
