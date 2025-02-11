@@ -3,7 +3,7 @@ import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import AppSidebar from "./components/AppSidebar";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 export default function Home() {
   return (

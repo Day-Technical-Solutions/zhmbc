@@ -2,12 +2,9 @@ import {
   Calendar,
   Heart,
   Home,
-  Inbox,
   Info,
   MapPin,
   Phone,
-  Search,
-  Settings,
   HandHeart,
   Users,
 } from "lucide-react";
