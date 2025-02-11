@@ -18,7 +18,7 @@ export default function Home() {
                 {/* Hero Section */}
                 <section className="relative h-[600px]">
                   <img
-                    src="/placeholder.svg"
+                    src="src/assets/placeholder.svg"
                     alt="Church"
                     className="brightness-50 w-full max-h-full object-cover"
                   />
@@ -91,7 +91,7 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                       <div className="border rounded-lg overflow-hidden">
                         <img
-                          src="/placeholder.svg?height=200&width=400"
+                          src="src/assets/placeholder.svg?height=200&width=400"
                           alt="Community Picnic"
                           width={400}
                           height={200}
@@ -116,7 +116,7 @@ export default function Home() {
                       </div>
                       <div className="border rounded-lg overflow-hidden">
                         <img
-                          src="/placeholder.svg?height=200&width=400"
+                          src="/src/assets/placeholder.svg?height=200&width=400"
                           alt="Vacation Bible School"
                           width={400}
                           height={200}
@@ -141,7 +141,7 @@ export default function Home() {
                       </div>
                       <div className="border rounded-lg overflow-hidden">
                         <img
-                          src="/placeholder.svg?height=200&width=400"
+                          src="src/assets/placeholder.svg?height=200&width=400"
                           alt="Worship Night"
                           width={400}
                           height={200}
@@ -183,7 +183,7 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                       <div className="bg-white rounded-lg shadow-md overflow-hidden">
                         <img
-                          src="/placeholder.svg?height=300&width=300"
+                          src="src/assets/placeholder.svg?height=300&width=300"
                           alt="John Doe"
                           width={300}
                           height={300}
@@ -199,7 +199,7 @@ export default function Home() {
                       </div>
                       <div className="bg-white rounded-lg shadow-md overflow-hidden">
                         <img
-                          src="/placeholder.svg?height=300&width=300"
+                          src="src/assets/placeholder.svg?height=300&width=300"
                           alt="Jane Smith"
                           width={300}
                           height={300}
@@ -215,7 +215,7 @@ export default function Home() {
                       </div>
                       <div className="bg-white rounded-lg shadow-md overflow-hidden">
                         <img
-                          src="/placeholder.svg?height=300&width=300"
+                          src="src/assets/placeholder.svg?height=300&width=300"
                           alt="Michael Johnson"
                           width={300}
                           height={300}
