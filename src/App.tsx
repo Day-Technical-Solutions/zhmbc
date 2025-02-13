@@ -1,4 +1,4 @@
-import { Calendar, Clock, MapPin, Phone, Heart } from "lucide-react";
+import { Calendar, Clock, MapPin, Phone, Heart, Printer, Mail } from "lucide-react";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
@@ -304,9 +304,17 @@ export default function Home() {
                           <Clock className="h-5 w-5 mr-2" />
                           <span>Sunday Service: 10:00 AM</span>
                         </div>
+                        <div className="flex items-center text-gray-500 mb-4">
+                          <Mail className="h-5 w-5 mr-2" />
+                          <span>ZionHopeMBC@ZHMBCOFMIAMI.comcastbiz.net</span>
+                        </div>
                         <div className="flex items-center text-gray-500">
                           <Phone className="h-5 w-5 mr-2" />
-                          <span>(305) 555-0123</span>
+                          <span>(305) 696-4341</span>
+                        </div>
+                      <div className="flex items-center text-gray-500">
+                          <Printer className="h-5 w-5 mr-2" />
+                          <span>(305) 696-2301</span>
                         </div>
                       </div>
                     </div>
