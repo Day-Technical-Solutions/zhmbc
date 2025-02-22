@@ -85,7 +85,7 @@ export default function Home() {
                 alt="Community Picnic"
                 width={400}
                 height={200}
-                className="w-full"
+                className="w-full h-72 object-cover"
               />
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">Community Picnic</h3>
@@ -108,7 +108,7 @@ export default function Home() {
                 alt="Vacation Bible School"
                 width={400}
                 height={200}
-                className="w-full"
+                className="w-full h-72 object-cover"
               />
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">
@@ -133,7 +133,7 @@ export default function Home() {
                 alt="Worship Night"
                 width={400}
                 height={200}
-                className="w-full"
+                className="w-full h-72 object-cover"
               />
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">Worship Night</h3>
@@ -168,7 +168,7 @@ export default function Home() {
                 alt="John Doe"
                 width={300}
                 height={300}
-                className="w-full h-48 object-cover"
+                className="w-full object-cover"
               />
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">John Doe</h3>
@@ -182,7 +182,7 @@ export default function Home() {
                 alt="Jane Smith"
                 width={300}
                 height={300}
-                className="w-full h-48 object-cover"
+                className="w-full object-cover"
               />
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">Jane Smith</h3>
@@ -196,7 +196,7 @@ export default function Home() {
                 alt="Michael Johnson"
                 width={300}
                 height={300}
-                className="w-full h-48 object-cover"
+                className="w-full object-cover"
               />
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">Michael Johnson</h3>
@@ -250,20 +250,18 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-12">Find Us</h2>
           <div className="flex flex-col md:flex-row items-center justify-center gap-8">
             <div className="w-full md:w-1/2">
-              <div className="aspect-w-16 aspect-h-9">
+              <div className="h-full">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3592.1376531452397!2d-80.21986492413431!3d25.82636997929792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b6b8a2999629%3A0x5d306c14a9077670!2s5129%20NW%2017th%20Ave%2C%20Miami%2C%20FL%2033142!5e0!3m2!1sen!2sus!4v1625000000000!5m2!1sen!2sus"
-                  width="600"
-                  height="450"
                   style={{ border: 0 }}
                   allowFullScreen={false}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full h-full rounded-lg shadow-lg"
+                  className="w-full h-72 rounded-lg shadow-lg"
                 ></iframe>
               </div>
             </div>
-            <div className="w-full md:w-1/2">
+            <div className="w-full md:w-1/2 p-5">
               <h3 className="text-2xl font-semibold mb-4">
                 Zion Hope Missionary Baptist Church
               </h3>
