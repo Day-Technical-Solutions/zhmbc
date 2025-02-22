@@ -19,18 +19,19 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { Link } from "react-router-dom";
 
 // Menu items.
 const items = [
   { icon: Home, label: "Home", href: "/" },
-  { icon: Calendar, label: "Services", href: "#services" },
-  { icon: Calendar, label: "Events", href: "#events" },
-  { icon: Users, label: "Members", href: "#members" },
-  { icon: Heart, label: "Donations", href: "#donations" },
-  { icon: MapPin, label: "Location", href: "#location" },
-  { icon: Info, label: "About", href: "#about" },
-  { icon: HandHeart, label: "Prayer Requests", href: "#prayer-requests" },
-  { icon: Phone, label: "Contact", href: "#contact" },
+  { icon: Calendar, label: "Services", href: "/#services" },
+  { icon: MapPin, label: "Location", href: "/#location" },
+  { icon: Calendar, label: "Events", href: "/events" },
+  { icon: Info, label: "About", href: "/about" },
+  { icon: Users, label: "Members", href: "/members" },
+  { icon: Heart, label: "Donations", href: "/donations" },
+  { icon: HandHeart, label: "Prayer Requests", href: "/prayer" },
+  { icon: Phone, label: "Contact Us", href: "/contact" },
 ];
 
 export default function AppSidebar() {
@@ -44,10 +45,10 @@ export default function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.label} className="py-5">
                   <SidebarMenuButton asChild>
-                    <a href={item.href}>
+                    <Link to={item.href}>
                       <item.icon />
                       <span className="text-lg pl-2">{item.label}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
