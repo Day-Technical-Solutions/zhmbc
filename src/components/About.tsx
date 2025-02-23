@@ -64,7 +64,7 @@ export default function AboutPage() {
   return (
     <main className="flex-1 w-full">
       {/* Hero Section */}
-      <section className="relative h-[600px]">
+      <section className="relative h-[300px]">
         <img
           src={placeholder}
           alt="Church"

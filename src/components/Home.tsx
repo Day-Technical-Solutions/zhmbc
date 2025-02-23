@@ -8,8 +8,12 @@ import {
   Printer,
 } from "lucide-react";
 import placeholder from "/public/images/placeholder.svg";
+import { Button } from "./ui/button";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
+
   return (
     <div>
       {/* Hero Section */}
@@ -206,12 +210,12 @@ export default function Home() {
             </div>
           </div>
           <div className="text-center">
-            <a
-              href="#"
-              className="bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold text-lg hover:bg-indigo-700 transition duration-300"
+            <Button
+              onClick={() => navigate("/contact")}
+              className="bg-indigo-600 text-white px-6 py-6 rounded-full font-semibold text-lg hover:bg-indigo-700 transition duration-300"
             >
               Become a Member
-            </a>
+            </Button>
           </div>
         </div>
       </section>
@@ -229,12 +233,12 @@ export default function Home() {
               difference in the lives we touch.
             </p>
             <div className="flex justify-center mb-8">
-              <a
-                href="#"
-                className="bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold text-lg hover:bg-indigo-700 transition duration-300 inline-flex items-center"
+              <Button
+                onClick={() => navigate("/donate")}
+                className="bg-indigo-600 text-white px-10 py-6 rounded-full font-semibold text-lg hover:bg-indigo-700 transition duration-300 inline-flex items-center w-40"
               >
                 <Heart className="mr-2 h-5 w-5" /> Donate
-              </a>
+              </Button>
             </div>
             <p className="text-sm text-gray-500">
               For other ways to give or for any questions about donations,

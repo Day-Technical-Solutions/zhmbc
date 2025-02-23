@@ -29,7 +29,7 @@ const items = [
   { icon: Calendar, label: "Events", href: "/events" },
   { icon: Info, label: "About", href: "/about" },
   { icon: Users, label: "Members", href: "/members" },
-  { icon: Heart, label: "Donations", href: "/donations" },
+  { icon: Heart, label: "Donations", href: "/donate" },
   { icon: HandHeart, label: "Prayer Requests", href: "/prayer" },
   { icon: Phone, label: "Contact Us", href: "/contact" },
 ];
