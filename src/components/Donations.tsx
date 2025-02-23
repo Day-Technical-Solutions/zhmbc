@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -50,7 +49,7 @@ export default function Donations() {
     },
   });
 
-  const selectedPayment = watch("paymentMethod");
+  //const selectedPayment = watch("paymentMethod");
 
   const onSubmit = (data: typeof donationSchema) => {
     console.log("Form Submitted:", data);
