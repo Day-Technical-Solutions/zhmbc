@@ -38,9 +38,7 @@ export default function Contact() {
       message: formData.get("message") as string,
     };
 
-    const result = null;
-
-    setSuccess(true);
+    if (data) setSuccess(true);
     setIsSubmitting(false);
     event.currentTarget.reset();
   }

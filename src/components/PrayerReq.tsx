@@ -47,7 +47,7 @@ export default function PrayerRequest() {
       request: formData.get("request") as string,
     };
 
-    setSuccess(true);
+    if (data) setSuccess(true);
     setIsSubmitting(false);
     event.currentTarget.reset();
   }
