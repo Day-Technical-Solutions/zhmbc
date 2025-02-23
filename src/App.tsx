@@ -5,6 +5,9 @@ import NoPage from "./components/NoPage";
 import Events from "./components/Events";
 import Members from "./components/Members";
 import About from "./components/About";
+import Donations from "./components/Donations";
+import Contact from "./components/Contact";
+import PrayerRequest from "./components/PrayerReq";
 
 export default function App() {
   return (
@@ -14,6 +17,9 @@ export default function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/members" element={<Members />} />
         <Route path="/about" element={<About />} />
+        <Route path="/donate" element={<Donations />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/prayer" element={<PrayerRequest />} />
         <Route path="*" element={<NoPage />} />
       </Route>
     </Routes>
