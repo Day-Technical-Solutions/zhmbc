@@ -1,6 +1,11 @@
 /** @format */
 
-import {useForm, Controller, type FieldErrors} from "react-hook-form";
+import {useForm, Controller} from "react-hook-form";
+import {useEffect, useMemo, useState} from "react";
+
+import {stripePromise} from "../lib/stripe";
+import {Elements, PaymentElement, useStripe, useElements} from "@stripe/react-stripe-js";
+
 import {zodResolver} from "@hookform/resolvers/zod";
 import * as z from "zod";
 import {Button} from "@/components/ui/button";
@@ -15,62 +20,98 @@ import {
 	CardFooter,
 } from "@/components/ui/card";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
-import {RadioGroup, RadioGroupItem} from "@/components/ui/radio-group";
 import {CreditCard, ShoppingCartIcon as Paypal, Lock, Heart, DollarSign} from "lucide-react";
 import placeholder from "/src/images/placeholder.svg";
+import {useDebouncedValue} from "./useDebouncedValue";
 
-const baseSchema = z.object({
+const donationSchema = z.object({
 	amount: z.coerce.number().positive("Enter a positive amount"),
 	frequency: z.enum(["one-time", "monthly"]),
+	paymentMethod: z.enum(["card", "paypal"]),
+	email: z.string().email("Enter a valid email").or(z.literal("")).optional(),
 });
-
-const cardSchema = baseSchema.extend({
-	paymentMethod: z.literal("card"),
-	cardName: z.string().min(1, "Name on card is required"),
-	cardNumber: z.string().min(13, "Invalid card number").max(19, "Invalid card number"),
-	expiry: z.string().regex(/^(0[1-9]|1[0-2])\/\d{2}$/, "Use MM/YY format"),
-	cvc: z.string().min(3, "Invalid CVC").max(4, "Invalid CVC"),
-});
-
-const paypalSchema = baseSchema.extend({
-	paymentMethod: z.literal("paypal"),
-	// No card fields required for PayPal
-});
-
-const donationSchema = z.discriminatedUnion("paymentMethod", [cardSchema, paypalSchema]);
 
 type DonationForm = z.infer<typeof donationSchema>;
-type CardForm = z.infer<typeof cardSchema>;
 
 export default function Donations() {
 	const {
 		control,
 		register,
-		handleSubmit,
 		watch,
 		setValue,
-		formState: {errors, isSubmitting},
+		formState: {errors},
 	} = useForm<DonationForm>({
 		resolver: zodResolver(donationSchema),
 		defaultValues: {
 			amount: 10,
 			paymentMethod: "card",
 			frequency: "one-time",
+			email: "",
 		},
 		mode: "onTouched",
 	});
-
 	const paymentMethod = watch("paymentMethod");
 	const amount = watch("amount");
+	const email = watch("email");
+	const debouncedEmail = useDebouncedValue(email, 600);
 	const predefinedAmounts = [10, 25, 50, 100, 250, 500];
-	const cardErrors = errors as unknown as FieldErrors<CardForm>;
 
-	const onSubmit = (data: DonationForm) => {
-		console.log("Form Submitted:", data);
-		// Handle Card
+	const [clientSecret, setClientSecret] = useState<string | null>(null);
+	const [loadingPI, setLoadingPI] = useState(false);
 
-		//Handle Paypal
-	};
+	// Stripe Elements options (only when clientSecret exists)
+	const elementsOptions = useMemo(
+		() =>
+			clientSecret
+				? ({
+						clientSecret,
+						appearance: {
+							theme: "stripe",
+						},
+						layout: {
+							type: "accordion",
+							defaultCollapsed: false,
+						},
+				  } as const)
+				: undefined,
+		[clientSecret]
+	);
+
+	useEffect(() => {
+		const fetchPaymentIntent = async () => {
+			setLoadingPI(true);
+			if (paymentMethod !== "card" || !amount || amount <= 0) {
+				setClientSecret(null);
+				return;
+			}
+
+			try {
+				const res = await fetch("/api/stripe/create-payment-intent", {
+					method: "POST",
+					headers: {"Content-Type": "application/json"},
+					body: JSON.stringify({
+						amount,
+						email,
+					}),
+				});
+
+				if (!res.ok) {
+					const {message} = await res
+						.json()
+						.catch(() => ({message: "Failed to initialize payment"}));
+					throw new Error(message);
+				}
+
+				const resData = await res.json();
+				setClientSecret(resData.clientSecret);
+			} catch (error) {
+				console.log("Error fetching payment intent: ", error);
+			} finally {
+				setLoadingPI(false);
+			}
+		};
+		fetchPaymentIntent();
+	}, [paymentMethod, amount, debouncedEmail]);
 
 	return (
 		<main className="flex-1 w-full">
@@ -89,7 +130,7 @@ export default function Donations() {
 				</div>
 			</section>
 
-			<section className="py-16">
+			<section className="flex items-start py-16">
 				<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="max-w-6xl mx-auto">
 						<Card className="border-2">
@@ -101,7 +142,7 @@ export default function Donations() {
 							</CardHeader>
 
 							<CardContent>
-								<form onSubmit={handleSubmit(onSubmit)} noValidate>
+								<form noValidate>
 									{/* Amount */}
 									<div className="mb-8">
 										<Label>Select Amount</Label>
@@ -135,7 +176,18 @@ export default function Donations() {
 											)}
 										</div>
 									</div>
-
+									<div className="mb-5">
+										<Label htmlFor="donor-email">Email for receipt (optional)</Label>
+										<Input
+											id="donor-email"
+											type="email"
+											value={email}
+											placeholder="YourEmail@example.com"
+											onChange={(e) =>
+												setValue("email", e.target.value, {shouldValidate: true, shouldTouch: true})
+											}
+										/>
+									</div>
 									{/* Payment Method (controlled Tabs) */}
 									<div className="mb-8">
 										<Label>Payment Method</Label>
@@ -157,35 +209,37 @@ export default function Donations() {
 														</TabsTrigger>
 													</TabsList>
 
-													<TabsContent value="card" className="space-y-3 pt-4">
-														<Input placeholder="Name on Card" {...register("cardName")} />
-														{paymentMethod === "card" && cardErrors.cardName && (
-															<p className="text-red-500 text-sm">{cardErrors.cardName.message}</p>
-														)}
-
-														<Input
-															inputMode="numeric"
-															placeholder="Card Number"
-															{...register("cardNumber")}
-														/>
-														{paymentMethod === "card" && cardErrors.cardNumber && (
-															<p className="text-red-500 text-sm">
-																{cardErrors.cardNumber.message}
+													<TabsContent value="card" className="pt-4 space-y-3">
+														{!amount || amount <= 0 ? (
+															<p className="text-sm text-gray-600">
+																Enter a donation amount to load the secure card field.
 															</p>
-														)}
-
-														<div className="grid grid-cols-2 gap-3">
-															<Input placeholder="MM/YY" {...register("expiry")} />
-															<Input inputMode="numeric" placeholder="CVC" {...register("cvc")} />
-														</div>
-														{paymentMethod === "card" && (cardErrors.expiry || cardErrors.cvc) && (
-															<div className="text-red-500 text-sm">
-																{cardErrors.expiry?.message || cardErrors.cvc?.message}
-															</div>
+														) : loadingPI ? (
+															<p className="text-sm text-gray-600">Preparing secure payment…</p>
+														) : elementsOptions ? (
+															<Elements
+																stripe={stripePromise}
+																options={{
+																	...elementsOptions,
+																}}
+																key={clientSecret /* force remount when intent changes */}>
+																<StripeCardSection
+																	onSuccess={() => (window.location.href = "/donate/success")}
+																/>
+															</Elements>
+														) : (
+															<p className="text-sm text-red-600">
+																We couldn’t initialize payment. Please adjust the amount or try
+																again.
+															</p>
 														)}
 													</TabsContent>
 
 													<TabsContent value="paypal" className="pt-4">
+														<div id="paypal-container-QRV24MM6HQ4Z8"></div>
+														<a href="https://www.paypal.com/donate/?hosted_button_id=QB2GKWP7M58Q6">
+															Donate
+														</a>
 														<p>You will be redirected to PayPal to complete your donation.</p>
 													</TabsContent>
 												</Tabs>
@@ -193,38 +247,7 @@ export default function Donations() {
 										/>
 									</div>
 
-									{/* Donation Frequency (controlled RadioGroup) */}
-									<div className="mb-8">
-										<Label>Donation Frequency</Label>
-										<Controller
-											name="frequency"
-											control={control}
-											render={({field}) => (
-												<RadioGroup
-													value={field.value}
-													onValueChange={field.onChange}
-													className="grid gap-4">
-													<div className="flex items-center space-x-2">
-														<RadioGroupItem value="one-time" id="one-time" />
-														<Label htmlFor="one-time">One-time donation</Label>
-													</div>
-													<div className="flex items-center space-x-2">
-														<RadioGroupItem value="monthly" id="monthly" />
-														<Label htmlFor="monthly">Monthly donation</Label>
-													</div>
-												</RadioGroup>
-											)}
-										/>
-										{errors.frequency && (
-											<p className="mt-1 text-red-500 text-sm">{errors.frequency.message}</p>
-										)}
-									</div>
-
 									<CardFooter className="flex flex-col space-y-4">
-										<Button className="w-full" size="lg" type="submit" disabled={isSubmitting}>
-											<Heart className="mr-2 h-5 w-5" />{" "}
-											{isSubmitting ? "Processing..." : "Complete Donation"}
-										</Button>
 										<div className="flex items-center justify-center text-sm text-gray-500">
 											<Lock className="mr-2 h-4 w-4" /> Secure payment processing
 										</div>
@@ -263,5 +286,60 @@ export default function Donations() {
 				</div>
 			</section>
 		</main>
+	);
+}
+
+function StripeCardSection({onSuccess}: {onSuccess: () => void}) {
+	const stripe = useStripe();
+	const elements = useElements();
+	const [submitting, setSubmitting] = useState(false);
+	const [err, setErr] = useState<string | null>(null);
+
+	const handleConfirm = async () => {
+		if (!stripe || !elements) {
+			setErr("Payment is not ready yet.");
+			return;
+		}
+
+		// Ensure the Payment Element is mounted
+		if (!elements.getElement(PaymentElement)) {
+			setErr("Payment field hasn’t loaded yet. Please wait a moment.");
+			return;
+		}
+
+		setSubmitting(true);
+		setErr(null);
+
+		const {error} = await stripe.confirmPayment({
+			elements,
+			confirmParams: {
+				return_url: `${window.location.origin}/donate/success`,
+			},
+			redirect: "if_required",
+		});
+
+		setSubmitting(false);
+
+		if (error) {
+			setErr(error.message || "We couldn’t confirm your payment.");
+			return;
+		}
+
+		onSuccess();
+	};
+
+	return (
+		<div className="space-y-3">
+			<PaymentElement />
+			{err && <p className="text-sm text-red-600">{err}</p>}
+			<Button
+				type="button"
+				className="w-full"
+				onClick={handleConfirm}
+				disabled={submitting || !stripe || !elements}>
+				{submitting ? "Processing…" : "Complete Donation"}
+				<Heart className="mr-2 h-5 w-5" />
+			</Button>
+		</div>
 	);
 }

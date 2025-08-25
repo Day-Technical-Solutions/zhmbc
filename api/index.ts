@@ -2,6 +2,7 @@
 
 // api/index.ts
 import express, {Request, Response, NextFunction} from "express";
+import stripeRoutes from "./stripe";
 
 const app = express();
 
@@ -13,9 +14,8 @@ app.get("/api/health", (_req: Request, res: Response) => {
 	res.json({ok: true});
 });
 
-app.post("/api/echo", (req: Request, res: Response) => {
-	res.json({youSent: req.body});
-});
+// Mount Stripe routes at /api/stripe
+app.use("/api/stripe", stripeRoutes);
 
 // 404 for /api/*
 app.use("/api", (_req, res) => res.status(404).json({error: "Not found"}));
