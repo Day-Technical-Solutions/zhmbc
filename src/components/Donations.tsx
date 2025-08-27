@@ -3,7 +3,7 @@
 import {useForm, Controller} from "react-hook-form";
 import {useEffect, useMemo, useState} from "react";
 
-import {stripePromise} from "../lib/stripe";
+import {stripePromise} from "../lib/stripe.ts";
 import {Elements, PaymentElement, useStripe, useElements} from "@stripe/react-stripe-js";
 
 import {zodResolver} from "@hookform/resolvers/zod";

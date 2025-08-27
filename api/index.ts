@@ -2,7 +2,7 @@
 
 // api/index.ts
 import express, {Request, Response, NextFunction} from "express";
-import stripeRoutes from "./stripe";
+import stripeRoutes from "./stripe.ts";
 
 const app = express();
 

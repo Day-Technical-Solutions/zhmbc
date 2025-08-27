@@ -2,7 +2,7 @@
 
 import {Route, Routes} from "react-router-dom";
 import {Elements} from "@stripe/react-stripe-js";
-import {stripePromise} from "./lib/stripe";
+import {stripePromise} from "./lib/stripe.ts";
 import Layout from "./components/Layout";
 import Home from "./components/Home";
 import NoPage from "./components/NoPage";
