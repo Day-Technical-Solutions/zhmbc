@@ -7,8 +7,6 @@ import "dotenv/config";
 
 const router = Router();
 
-console.log("has secret:", !!process.env.STRIPE_SECRET_KEY);
-
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 	apiVersion: (process.env.STRIPE_API_VERSION as Stripe.LatestApiVersion) || "2024-06-20",
 });

@@ -22,6 +22,7 @@ import {
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {CreditCard, ShoppingCartIcon as Paypal, Lock, Heart, DollarSign} from "lucide-react";
 import placeholder from "/src/images/placeholder.svg";
+import PaypalLogo from "/src/images/Paypal.svg";
 import {useDebouncedValue} from "./useDebouncedValue";
 
 const donationSchema = z.object({
@@ -50,6 +51,7 @@ export default function Donations() {
 		},
 		mode: "onTouched",
 	});
+
 	const paymentMethod = watch("paymentMethod");
 	const amount = watch("amount");
 	const email = watch("email");
@@ -188,10 +190,9 @@ export default function Donations() {
 											}
 										/>
 									</div>
+									<Label>Payment Method</Label>
 									{/* Payment Method (controlled Tabs) */}
-									<div className="mb-8">
-										<Label>Payment Method</Label>
-
+									<div className="mb-8 flex justify-center">
 										<Controller
 											name="paymentMethod"
 											control={control}
@@ -237,10 +238,13 @@ export default function Donations() {
 
 													<TabsContent value="paypal" className="pt-4">
 														<div id="paypal-container-QRV24MM6HQ4Z8"></div>
-														<a href="https://www.paypal.com/donate/?hosted_button_id=QB2GKWP7M58Q6">
-															Donate
-														</a>
 														<p>You will be redirected to PayPal to complete your donation.</p>
+
+														<a href="https://www.paypal.com/donate/?hosted_button_id=QB2GKWP7M58Q6">
+															<div className="bg-[#f5c842] rounded-4xl w-full p- mt-10 cursor-pointer flex justify-center">
+																<img className="m-3" width="120px" src={PaypalLogo}></img>
+															</div>
+														</a>
 													</TabsContent>
 												</Tabs>
 											)}
