@@ -23,7 +23,7 @@ import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {CreditCard, ShoppingCartIcon as Paypal, Lock, Heart, DollarSign} from "lucide-react";
 import placeholder from "/src/images/placeholder.svg";
 import PaypalLogo from "/src/images/Paypal.svg";
-import {useDebouncedValue} from "./useDebouncedValue";
+import {useDebouncedValue} from "../hooks/useDebouncedValue";
 
 const donationSchema = z.object({
 	amount: z.coerce.number().positive("Enter a positive amount"),

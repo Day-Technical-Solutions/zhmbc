@@ -17,6 +17,9 @@ app.get("/api/health", (_req: Request, res: Response) => {
 // Mount Stripe routes at /api/stripe
 app.use("/api/stripe", stripeRoutes);
 
+import emailRoutes from "./email.js";
+app.use("/api/email", emailRoutes);
+
 // 404 for /api/*
 app.use("/api", (_req, res) => res.status(404).json({error: "Not found"}));
 

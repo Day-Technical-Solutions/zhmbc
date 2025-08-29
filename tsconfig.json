@@ -15,6 +15,5 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "allowImportingTsExtensions": true,
   },
 }
