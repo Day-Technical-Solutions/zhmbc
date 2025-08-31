@@ -1,6 +1,6 @@
 /** @format */
 
-import {Calendar, Heart, Home, Info, MapPin, Phone, HandHeart, Users} from "lucide-react";
+import {Calendar, Heart, Home, Info, MapPin, Phone, HandHeart} from "lucide-react";
 
 import {
 	Sidebar,
