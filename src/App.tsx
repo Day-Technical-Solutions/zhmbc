@@ -7,7 +7,6 @@ import Layout from "./components/Layout";
 import Home from "./components/Home";
 import NoPage from "./components/NoPage";
 import Events from "./components/Events";
-import Members from "./components/Members";
 import About from "./components/About";
 import Donations from "./components/Donations";
 import Contact from "./components/Contact";
@@ -19,7 +18,7 @@ export default function App() {
 			<Route path="/" element={<Layout />}>
 				<Route index element={<Home />} />
 				<Route path="/events" element={<Events />} />
-				<Route path="/members" element={<Members />} />
+				{/* <Route path="/members" element={<Members />} /> */}
 				<Route path="/about" element={<About />} />
 				<Route
 					path="/donate"

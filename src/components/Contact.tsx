@@ -5,7 +5,6 @@
 import type React from "react";
 
 import {useState} from "react";
-
 import {Input} from "@/components/ui/input";
 import {Label} from "@/components/ui/label";
 import {Textarea} from "@/components/ui/textarea";
@@ -39,10 +38,26 @@ export default function Contact() {
 			subject: formData.get("subject") as string,
 			message: formData.get("message") as string,
 		};
-
 		if (data) setSuccess(true);
+
+		const URL = import.meta.env.VERCEL
+			? `https://${import.meta.env.VERCEL_URL}/api/email/contact`
+			: "http://localhost:3000/api/email/contact";
+		try {
+			const res = await fetch(URL, {
+				method: "POST",
+				headers: {"Content-Type": "application/json"},
+				body: JSON.stringify(data),
+			});
+			if (!res.ok) {
+				throw new Error(`POST error status: ${res.status}`);
+			}
+		} catch (error) {
+			console.log(error);
+		}
+
 		setIsSubmitting(false);
-		event.currentTarget.reset();
+		event.currentTarget?.reset();
 	}
 
 	return (

@@ -3,11 +3,13 @@
 // api/index.ts
 import express, {Request, Response, NextFunction} from "express";
 import stripeRoutes from "./stripe.js";
+import cors from "cors";
 
 const app = express();
 
 app.disable("x-powered-by");
 app.use(express.json());
+app.use(cors());
 
 // Example routes
 app.get("/api/health", (_req: Request, res: Response) => {

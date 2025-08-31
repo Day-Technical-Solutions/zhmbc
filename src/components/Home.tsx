@@ -141,7 +141,7 @@ export default function Home() {
 			</section>
 
 			{/* Members Section */}
-			<section id="members" className="py-16 bg-gray-100">
+			{/* <section id="members" className="py-16 bg-gray-100">
 				<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 					<h2 className="text-3xl font-bold text-center mb-12">Our Members</h2>
 					<p className="text-center text-gray-600 mb-8">
@@ -199,7 +199,7 @@ export default function Home() {
 						</Button>
 					</div>
 				</div>
-			</section>
+			</section> */}
 
 			{/* Donations Section */}
 			<section id="donations" className="py-16 bg-gray-50">

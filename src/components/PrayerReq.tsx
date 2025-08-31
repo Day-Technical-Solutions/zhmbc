@@ -40,7 +40,7 @@ export default function PrayerRequest() {
 		setErrors({});
 
 		const formData = new FormData(event.currentTarget);
-		const data = {
+		const payload = {
 			name: formData.get("name") as string,
 			email: formData.get("email") as string,
 			requestType: formData.get("requestType") as string,
@@ -49,10 +49,32 @@ export default function PrayerRequest() {
 			request: formData.get("request") as string,
 		};
 
-		if (data) setSuccess(true);
-		setIsSubmitting(false);
-		console.log(data);
-		event.currentTarget.reset();
+		const missing = ["name", "email", "request"].filter((k) => !(payload as any)[k]);
+		if (missing.length) {
+			setErrors({form: [`Missing: ${missing.join(", ")}`]});
+			setIsSubmitting(false);
+			return;
+		}
+
+		const URL = import.meta.env.VERCEL
+			? `https://${import.meta.env.VERCEL_URL}/api/email/prayer-request`
+			: "http://localhost:3000/api/email/prayer-request";
+
+		try {
+			const res = await fetch(URL, {
+				method: "POST",
+				headers: {"Content-Type": "application/json"},
+				body: JSON.stringify(payload),
+			});
+			const data = await res.json().catch(() => ({}));
+			if (!res.ok) throw new Error(data?.error || "Failed to submit");
+			setSuccess(true);
+			event.currentTarget.reset();
+		} catch (e: any) {
+			setErrors({form: [e?.message || "Failed to submit"]});
+		} finally {
+			setIsSubmitting(false);
+		}
 	}
 
 	return (
