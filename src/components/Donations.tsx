@@ -240,7 +240,7 @@ export default function Donations() {
 														<div id="paypal-container-QRV24MM6HQ4Z8"></div>
 														<p>You will be redirected to PayPal to complete your donation.</p>
 
-														<a href="https://www.paypal.com/donate/?hosted_button_id=QB2GKWP7M58Q6">
+														<a href="https://www.paypal.com/donate/?hosted_button_id=YET7B7H5XAB62">
 															<div className="bg-[#f5c842] rounded-4xl w-full p- mt-10 cursor-pointer flex justify-center">
 																<img className="m-3" width="120px" src={PaypalLogo}></img>
 															</div>
