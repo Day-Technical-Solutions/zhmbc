@@ -16,9 +16,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Mail, Phone, MapPin, Send, CheckCircle2, Printer } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
 import { Button } from "./ui/button";
-import placeholder from "/src/images/placeholder.svg";
+import HeroPhoto from "/images/church_choir.jpg";
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -60,9 +60,9 @@ export default function Contact() {
   return (
     <main className="flex-1 w-full">
       {/* Hero Section */}
-      <section className="relative h-[300px]">
+      <section className="relative h-[450px]">
         <img
-          src={placeholder}
+          src={HeroPhoto}
           alt="Contact Banner"
           className="brightness-50 w-full max-h-full object-cover"
         />
@@ -102,19 +102,12 @@ export default function Contact() {
                     <p className="text-gray-600">(305) 696-4341</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-4">
-                  <Printer className="w-6 h-6 text-indigo-600 mt-1" />
-                  <div>
-                    <h3 className="font-semibold mb-1">Fax</h3>
-                    <p className="text-gray-600">(305) 696-2301</p>
-                  </div>
-                </div>
 
                 <div className="flex items-start space-x-4">
                   <Mail className="w-6 h-6 text-indigo-600 mt-1" />
                   <div>
                     <h3 className="font-semibold mb-1">Email</h3>
-                    <p className="text-gray-600">zhmbc5129@gmail.com</p>
+                    <p className="text-gray-600">zhmbc17@gmail.com</p>
                   </div>
                 </div>
               </div>
@@ -123,7 +116,7 @@ export default function Contact() {
                 <h3 className="text-xl font-semibold mb-4">Office Hours</h3>
                 <div className="space-y-2 text-gray-600">
                   <p>Wednesday: 6:00 PM - 9:00 PM</p>
-                  <p>Sunday: 8:00 AM - 2:00 PM</p>
+                  <p>Sunday: 9:00 AM - 11:00 AM</p>
                 </div>
               </div>
             </div>

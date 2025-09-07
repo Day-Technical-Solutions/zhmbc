@@ -19,7 +19,7 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { HandIcon as PrayingHands, Send, CheckCircle2 } from "lucide-react";
-import placeholder from "/src/images/placeholder.svg";
+import HeroPhoto from "/images/church_pulpit_close.jpg";
 
 export default function PrayerRequest() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -78,9 +78,9 @@ export default function PrayerRequest() {
   return (
     <main className="flex-1 w-full">
       {/* Hero Section */}
-      <section className="relative h-[300px]">
+      <section className="relative h-[450px]">
         <img
-          src={placeholder}
+          src={HeroPhoto}
           alt="Prayer Request Banner"
           className="brightness-50 w-full max-h-full object-cover"
         />
