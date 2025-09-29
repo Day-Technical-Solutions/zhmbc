@@ -35,7 +35,6 @@ export default function PrayerRequest() {
   ];
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
     setIsSubmitting(true);
     setErrors({});
 

@@ -3,8 +3,10 @@
 // api/email.ts
 import { Router } from "express";
 import nodemailer from "nodemailer";
-
 import "dotenv/config";
+import ContactEmail from "../src/components/ContactEmail";
+import PrayerRequestEmail from "../src/components/PrayerRequestEmail";
+import { render } from "@react-email/components";
 
 const router = Router();
 const DEFAULT_EMAIL = "zhmbc17@gmail.com";
@@ -36,12 +38,15 @@ router.post("/contact", async (req, res) => {
         pass: process.env.GOOGLE_APP_PASSWORD, // The App Password you generated
       },
     });
+    const contactEmailHtml = await render(
+      ContactEmail({ name, email, phone, message, subject })
+    );
 
     const mailOptions = {
       from: `${name} <${DEFAULT_EMAIL}>`,
       to: DEFAULT_EMAIL,
       subject: `[Contact] ${subject}`,
-      html: html,
+      html: contactEmailHtml,
     };
 
     const info = await transporter.sendMail(mailOptions);
@@ -61,7 +66,7 @@ router.post("/prayer-request", async (req, res) => {
       email,
       requestType,
       urgent,
-      private: isPrivate, // "private" is reserved word in TS classes; just alias it
+      isPrivate,
       request,
       to = DEFAULT_EMAIL,
     } = (req.body ?? {}) as {
@@ -69,7 +74,7 @@ router.post("/prayer-request", async (req, res) => {
       email?: string;
       requestType?: string;
       urgent?: boolean;
-      private?: boolean;
+      isPrivate?: boolean;
       request?: string;
       to?: string;
     };
@@ -80,17 +85,18 @@ router.post("/prayer-request", async (req, res) => {
         .json({ error: "Missing name/email/requestType/request" });
     }
 
-    const html = "<p>Sent From Prayer Request Form!</p>";
-    // prayerHtml({
-    // 	name,
-    // 	email,
-    // 	requestType,
-    // 	urgent: !!urgent,
-    // 	isPrivate: !!isPrivate,
-    // 	request,
-    // });
+    const prayerHtml = await render(
+      PrayerRequestEmail({
+        name,
+        email,
+        requestType,
+        urgent: !!urgent,
+        isPrivate: !!isPrivate,
+        request,
+      })
+    );
 
-    const subject = `[Prayer Request] ${requestType}${urgent ? " (Urgent)" : ""}${
+    const subject = `[Prayer Request] ${requestType.toUpperCase()}${urgent ? " (Urgent)" : ""}${
       isPrivate ? " (Private)" : ""
     }`;
 
@@ -105,14 +111,17 @@ router.post("/prayer-request", async (req, res) => {
       },
     });
 
-    const info = await transporter.sendMail({
+    const mailOptions = {
       from: `${name} <${DEFAULT_EMAIL}>`,
-      to,
-      subject,
-      html,
-    });
+      to: DEFAULT_EMAIL,
+      subject: subject,
+      html: prayerHtml,
+    };
 
-    return res.status(200).json({ ok: true, id: info.messageId });
+    const info = await transporter.sendMail(mailOptions);
+    console.log("Email sent:", info.response);
+
+    return res.status(200).json({ ok: true });
   } catch (err: any) {
     console.error("Prayer send failed:", err);
     return res.status(500).json({ error: err?.message || "Send failed" });
