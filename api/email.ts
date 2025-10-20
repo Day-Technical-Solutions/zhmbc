@@ -6,7 +6,9 @@ import nodemailer from "nodemailer";
 import "dotenv/config";
 import ContactEmail from "../src/components/ContactEmail";
 import PrayerRequestEmail from "../src/components/PrayerRequestEmail";
+import ApplicationEmail from "../src/components/ApplicationEmail";
 import { render } from "@react-email/components";
+import multer from "multer";
 
 const router = Router();
 const DEFAULT_EMAIL = "zhmbc17@gmail.com";
@@ -128,25 +130,95 @@ router.post("/prayer-request", async (req, res) => {
   }
 });
 
-// router.post("/application", async (req, res) => {
-// 	try {
-// 		const {to = "zhmbc5129@gmail.com", subject, html, phone, email, message} = req.body ?? {};
-// 		if (!subject || !html) {
-// 			return res.status(400).json({error: "Missing to/subject/html"});
-// 		}
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB
+});
 
-// 		const data = await resend.emails.send({
-// 			from: email,
-// 			to,
-// 			subject,
-// 			html, //Handle convert and message proceessing
-// 		});
+router.post("/application", upload.single("cv"), async (req, res) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true, // Use SSL/TLS
+      auth: {
+        user: DEFAULT_EMAIL, // Your Gmail address
+        pass: process.env.GOOGLE_APP_PASSWORD, // The App Password you generated
+      },
+    });
 
-// 		res.status(200).json(data);
-// 	} catch (err: any) {
-// 		console.error("Email send failed:", err);
-// 		res.status(500).json({error: err?.message || "Send failed"});
-// 	}
-// });
+    const {
+      firstName = "",
+      lastName = "",
+      email = "",
+      phone = "",
+      address = "",
+      dateOfBirth = "",
+      memberSince = "",
+      positionApplying = "",
+      ministry = "",
+      experience = "",
+      qualifications = "",
+      motivation = "",
+      availability = "",
+      references = "",
+      hasCV = "",
+    } = (req.body ?? {}) as Record<string, string>;
+
+    if (!firstName || !lastName || !email) {
+      return res
+        .status(400)
+        .json({ error: "Missing firstName/lastName/email" });
+    }
+
+    const hasCvBool = String(hasCV).toLowerCase() === "true" || !!req.file;
+
+    const html = await render(
+      ApplicationEmail({
+        firstName,
+        lastName,
+        email,
+        phone,
+        address,
+        dateOfBirth,
+        memberSince,
+        positionApplying,
+        ministry,
+        experience,
+        qualifications,
+        motivation,
+        availability,
+        references,
+        hasCV: hasCvBool,
+        siteName: "ZHMBC",
+      })
+    );
+
+    const attachments = [];
+    if (req.file) {
+      attachments.push({
+        filename: req.file.originalname || "cv.pdf",
+        content: req.file.buffer,
+        contentType: req.file.mimetype || "application/octet-stream",
+      });
+    }
+
+    const subject = `Leadership Application: ${firstName} ${lastName}${positionApplying ? ` — ${positionApplying}` : ""}`;
+
+    const info = transporter.sendMail({
+      from: `Leadership Applications <${DEFAULT_EMAIL}>`, // keep verified sender
+      to: DEFAULT_EMAIL, // recipient mailbox
+      subject,
+      html,
+      attachments,
+    });
+
+    return res.status(200).json({ ok: true });
+  } catch (err: any) {
+    console.error("Email send failed:", err);
+    res.status(500).json({ error: err?.message || "Send failed" });
+  }
+});
 
 export default router;

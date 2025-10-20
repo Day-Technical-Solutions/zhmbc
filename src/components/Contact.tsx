@@ -26,10 +26,12 @@ export default function Contact() {
   const [errors, setErrors] = useState<Record<string, string[]>>({});
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     setIsSubmitting(true);
     setErrors({});
 
     const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
     const data = {
       name: formData.get("name") as string,
       email: formData.get("email") as string,
@@ -53,7 +55,7 @@ export default function Contact() {
     }
 
     setIsSubmitting(false);
-    event.currentTarget.reset();
+    form.reset();
   }
 
   return (

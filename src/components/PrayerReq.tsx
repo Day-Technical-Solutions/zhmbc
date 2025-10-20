@@ -35,8 +35,10 @@ export default function PrayerRequest() {
   ];
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     setIsSubmitting(true);
     setErrors({});
+    const form = event.currentTarget;
 
     const formData = new FormData(event.currentTarget);
     const payload = {
@@ -66,7 +68,7 @@ export default function PrayerRequest() {
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data?.error || "Failed to submit");
       setSuccess(true);
-      event.currentTarget.reset();
+      form.reset();
     } catch (e: any) {
       setErrors({ form: [e?.message || "Failed to submit"] });
     } finally {
