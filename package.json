@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently -k -n WEB,API -c green,blue \"vite\" \"tsx watch api/index.ts\"",
-    "build": "tsc -b && vite build",
+    "build:emails": "tsc -p tsconfig.emails.json",
+    "build": "npm run build:emails && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
