@@ -6,9 +6,9 @@ import nodemailer from "nodemailer";
 import "dotenv/config";
 import { render } from "@react-email/render";
 import multer from "multer";
-import ContactEmail from "./_emails/ContactEmail.js";
-import ApplicationEmail from "./_emails/ApplicationEmail.js";
-import PrayerRequestEmail from "./_emails/PrayerRequestEmail.js";
+import ContactEmail from "./_emails-build/ContactEmail.js";
+import ApplicationEmail from "./_emails-build/ApplicationEmail.js";
+import PrayerRequestEmail from "./_emails-build/PrayerRequestEmail.js";
 
 const router = Router();
 const DEFAULT_EMAIL = "zhmbc17@gmail.com";
