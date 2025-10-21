@@ -4,9 +4,9 @@
 import { Router } from "express";
 import nodemailer from "nodemailer";
 import "dotenv/config";
-import ContactEmail from "../src/components/ContactEmail.js";
-import PrayerRequestEmail from "../src/components/PrayerRequestEmail.js";
-import ApplicationEmail from "../src/components/ApplicationEmail.js";
+import ContactEmail from "./_emails/ContactEmail.js";
+import PrayerRequestEmail from "./_emails/PrayerRequestEmail.js";
+import ApplicationEmail from "./_emails/ApplicationEmail.js";
 import { render } from "@react-email/components";
 import multer from "multer";
 
