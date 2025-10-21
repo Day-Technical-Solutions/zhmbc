@@ -4,11 +4,11 @@
 import { Router } from "express";
 import nodemailer from "nodemailer";
 import "dotenv/config";
-import { render } from "@react-email/components";
+import { render } from "@react-email/render";
 import multer from "multer";
-import ContactEmail from "./_emails/ContactEmail";
-import ApplicationEmail from "./_emails/ApplicationEmail";
-import PrayerRequestEmail from "./_emails/PrayerRequestEmail";
+import ContactEmail from "./_emails/ContactEmail.js";
+import ApplicationEmail from "./_emails/ApplicationEmail.js";
+import PrayerRequestEmail from "./_emails/PrayerRequestEmail.js";
 
 const router = Router();
 const DEFAULT_EMAIL = "zhmbc17@gmail.com";
@@ -49,6 +49,7 @@ router.post("/contact", async (req, res) => {
       to: DEFAULT_EMAIL,
       subject: `[Contact] ${subject}`,
       html: contactEmailHtml,
+      ...(email ? { replyTo: email } : {}),
     };
 
     const info = await transporter.sendMail(mailOptions);
@@ -118,6 +119,7 @@ router.post("/prayer-request", async (req, res) => {
       to: DEFAULT_EMAIL,
       subject: subject,
       html: prayerHtml,
+      ...(email ? { replyTo: email } : {}),
     };
 
     const info = await transporter.sendMail(mailOptions);
@@ -211,6 +213,7 @@ router.post("/application", upload.single("cv"), async (req, res) => {
       to: DEFAULT_EMAIL, // recipient mailbox
       subject,
       html,
+      ...(email ? { replyTo: email } : {}),
       attachments,
     });
 
