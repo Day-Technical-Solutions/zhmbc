@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently -k -n WEB,API -c green,blue \"vite\" \"tsx watch api/index.ts\"",
     "build:emails": "tsc -p tsconfig.emails.json",
-    "build": "npm run build:emails && tsc -b && vite build",
+    "build": "npm run build:emails && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
