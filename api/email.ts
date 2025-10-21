@@ -4,11 +4,11 @@
 import { Router } from "express";
 import nodemailer from "nodemailer";
 import "dotenv/config";
-import ContactEmail from "./_emails/ContactEmail.js";
-import PrayerRequestEmail from "./_emails/PrayerRequestEmail.js";
-import ApplicationEmail from "./_emails/ApplicationEmail.js";
 import { render } from "@react-email/components";
 import multer from "multer";
+import ContactEmail from "./_emails/ContactEmail";
+import ApplicationEmail from "./_emails/ApplicationEmail";
+import PrayerRequestEmail from "./_emails/PrayerRequestEmail";
 
 const router = Router();
 const DEFAULT_EMAIL = "zhmbc17@gmail.com";
