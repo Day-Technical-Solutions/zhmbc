@@ -3,12 +3,13 @@
     "rootDir": "api/_emails",
     "outDir": "api/_emails-build",
     "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "module": "nodenext",
+    "moduleResolution": "NodeNext",
     "jsx": "react-jsx",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "declaration": false
   },
-  "include": ["api/_emails/**/*.(ts|tsx)"]
+  "include": ["api/_emails/**/*.ts", "api/_emails/**/*.tsx"],
+  "exclude": ["node_modules", "api/_emails-build"]
 }
