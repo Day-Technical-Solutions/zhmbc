@@ -8,9 +8,7 @@
     "jsx": "react-jsx",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "declaration": true, // ✅ emit .d.ts
-    "declarationMap": false,
-    "emitDeclarationOnly": false
+    "declaration": true
   },
   "include": ["api/_emails/**/*.ts", "api/_emails/**/*.tsx"],
   "exclude": ["node_modules", "api/_emails-build"]

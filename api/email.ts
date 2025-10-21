@@ -1,5 +1,10 @@
 /** @format */
-
+console.log(
+  "[email route imports]",
+  new URL(import.meta.url).pathname,
+  "ContactEmail import:",
+  "./_emails-build/ContactEmail.js"
+);
 // api/email.ts
 import { Router } from "express";
 import nodemailer from "nodemailer";
