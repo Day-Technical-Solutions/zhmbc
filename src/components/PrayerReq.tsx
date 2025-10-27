@@ -223,7 +223,7 @@ export default function PrayerRequest() {
               </p>
               <p className="text-gray-600">
                 For immediate prayer needs or to speak with a pastor, please
-                call our prayer line at (305) 555-0123.
+                call our prayer line at (305) 696-4341.
               </p>
             </div>
           </div>

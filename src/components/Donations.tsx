@@ -335,9 +335,7 @@ export default function Donations() {
                 <div className="text-gray-600">Families Supported Monthly</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-indigo-600 mb-2">
-                  12
-                </div>
+                <div className="text-2xl font-bold text-indigo-600 mb-2">4</div>
                 <div className="text-gray-600">Active Ministry Programs</div>
               </div>
               <div>
