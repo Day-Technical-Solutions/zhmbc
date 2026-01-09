@@ -19,7 +19,7 @@ export default function Apply() {
 
 	const handleDownloadAnnouncement = () => {
 		const link = document.createElement("a");
-		link.href = "/files/ZHMBC_Pastoral_Vacancy_Announcment";
+		link.href = "/files/ZHMBC_Pastoral_Vacancy_Announcment.docx";
 		link.download = "ZHMBC-Pastoral-Vacancy-Announcment.docx";
 		link.rel = "noopener";
 		document.body.appendChild(link);
