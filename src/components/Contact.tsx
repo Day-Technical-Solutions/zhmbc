@@ -31,6 +31,7 @@ export default function Contact() {
     setErrors({});
 
     const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
     const data = {
       name: formData.get("name") as string,
       email: formData.get("email") as string,
@@ -54,7 +55,7 @@ export default function Contact() {
     }
 
     setIsSubmitting(false);
-    event.currentTarget?.reset();
+    form.reset();
   }
 
   return (

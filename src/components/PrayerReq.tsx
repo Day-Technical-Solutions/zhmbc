@@ -38,6 +38,7 @@ export default function PrayerRequest() {
     event.preventDefault();
     setIsSubmitting(true);
     setErrors({});
+    const form = event.currentTarget;
 
     const formData = new FormData(event.currentTarget);
     const payload = {
@@ -67,7 +68,7 @@ export default function PrayerRequest() {
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data?.error || "Failed to submit");
       setSuccess(true);
-      event.currentTarget.reset();
+      form.reset();
     } catch (e: any) {
       setErrors({ form: [e?.message || "Failed to submit"] });
     } finally {
@@ -222,7 +223,7 @@ export default function PrayerRequest() {
               </p>
               <p className="text-gray-600">
                 For immediate prayer needs or to speak with a pastor, please
-                call our prayer line at (305) 555-0123.
+                call our prayer line at (305) 696-4341.
               </p>
             </div>
           </div>

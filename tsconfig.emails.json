@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "rootDir": "api/_emails",
+    "outDir": "api/_emails-build",
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "declaration": true
+  },
+  "include": ["api/_emails/**/*.ts", "api/_emails/**/*.tsx"],
+  "exclude": ["node_modules", "api/_emails-build"]
+}

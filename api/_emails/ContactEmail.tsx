@@ -12,7 +12,7 @@ import {
   Link,
 } from "@react-email/components";
 
-type ContactMessageProps = {
+type ContactEmailProps = {
   name: string;
   email: string;
   phone?: string;
@@ -22,25 +22,50 @@ type ContactMessageProps = {
   siteUrl?: string; // optional link back
   toLabel?: string; // who receives (e.g., "ZHBC Office")
 };
+const styles: Record<string, React.CSSProperties> = {
+  body: { backgroundColor: "#f6f9fc", margin: 0, padding: "24px 0" },
+  container: {
+    backgroundColor: "#ffffff",
+    borderRadius: 12,
+    border: "1px solid #e5e7eb",
+    padding: 24,
+    width: "100%",
+    maxWidth: 640,
+  },
+  h1: { margin: 0, fontSize: 22, lineHeight: "28px" },
+  meta: { color: "#6b7280", fontSize: 14, marginTop: 8 },
+  hr: { borderColor: "#e5e7eb", margin: "16px 0" },
+  block: { marginBottom: 12 },
+  label: {
+    color: "#6b7280",
+    fontSize: 12,
+    textTransform: "uppercase",
+    letterSpacing: 0.4,
+  },
+  value: { fontSize: 14, color: "#111827", whiteSpace: "pre-wrap" },
+  footer: { color: "#9ca3af", fontSize: 12, marginTop: 8 },
+};
 
-export default function ContactMessage({
+export default function ContactEmail({
   name,
   email,
   phone,
   subject,
   message,
   siteName = "ZHMBC",
-  siteUrl = "https://github.com/day-technical-solutions",
+  siteUrl = "https://www.zhmbc.com/",
   toLabel = "Trustee",
-}: ContactMessageProps) {
+}: ContactEmailProps) {
   return (
     <Html>
       <Head />
-      <Preview>{`New contact form message: ${subject}`}</Preview>
+      <Preview>{`New contact from ${name}`}</Preview>
       <Body style={styles.body}>
         <Container style={styles.container}>
           <Section>
-            <Heading style={styles.h1}>{siteName} — New Message</Heading>
+            <Heading style={styles.h1}>
+              {siteName} — New Contact Message{" "}
+            </Heading>
             <Text style={styles.meta}>
               You received a new message from <strong>{name}</strong>
               {siteUrl ? (
@@ -81,9 +106,8 @@ export default function ContactMessage({
 
             <Hr style={styles.hr} />
             <Text style={styles.footer}>
-              This email was sent automatically to {toLabel}. Replying to this
-              email will reach the sender at{" "}
-              <Link href={`mailto:${email}`}>{email}</Link>.
+              This email was sent automatically to {toLabel}. Reply to the
+              sender at <Link href={`mailto:${email}`}>{email}</Link>.
             </Text>
           </Section>
         </Container>
@@ -91,27 +115,3 @@ export default function ContactMessage({
     </Html>
   );
 }
-
-const styles: Record<string, React.CSSProperties> = {
-  body: { backgroundColor: "#f6f9fc", margin: 0, padding: "24px 0" },
-  container: {
-    backgroundColor: "#ffffff",
-    borderRadius: 12,
-    border: "1px solid #e5e7eb",
-    padding: 24,
-    width: "100%",
-    maxWidth: 640,
-  },
-  h1: { margin: 0, fontSize: 22, lineHeight: "28px" },
-  meta: { color: "#6b7280", fontSize: 14, marginTop: 8 },
-  hr: { borderColor: "#e5e7eb", margin: "16px 0" },
-  block: { marginBottom: 12 },
-  label: {
-    color: "#6b7280",
-    fontSize: 12,
-    textTransform: "uppercase",
-    letterSpacing: 0.4,
-  },
-  value: { fontSize: 14, color: "#111827", whiteSpace: "pre-wrap" },
-  footer: { color: "#9ca3af", fontSize: 12, marginTop: 8 },
-};

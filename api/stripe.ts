@@ -1,14 +1,14 @@
 /** @format */
 
 // api/stripe.ts
-import {Router} from "express";
+import { Router } from "express";
 import Stripe from "stripe";
 import "dotenv/config";
 
 const router = Router();
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-	apiVersion: (process.env.STRIPE_API_VERSION as Stripe.LatestApiVersion) || "2024-06-20",
+  apiVersion: process.env.STRIPE_API_VERSION as Stripe.LatestApiVersion,
 });
 
 /**
@@ -19,40 +19,40 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
  * Use for ONE-TIME payments with Stripe Elements (PaymentElement).
  */
 router.post("/create-payment-intent", async (req, res) => {
-	try {
-		const {
-			amount,
-			currency = "usd",
-			email,
-			metadata,
-		} = req.body as {
-			amount: number;
-			currency?: string;
-			email?: string;
-			metadata?: Record<string, string>;
-		};
+  try {
+    const {
+      amount,
+      currency = "usd",
+      email,
+      metadata,
+    } = req.body as {
+      amount: number;
+      currency?: string;
+      email?: string;
+      metadata?: Record<string, string>;
+    };
 
-		if (!amount || amount <= 0) {
-			return res.status(400).json({message: "Invalid amount"});
-		}
+    if (!amount || amount <= 0) {
+      return res.status(400).json({ message: "Invalid amount" });
+    }
 
-		const params = {
-			amount: Math.round(amount * 100), // cents
-			currency,
-			payment_method_types: ["card"],
-			metadata: {source: "donations-api", ...(metadata || {})},
-			statement_descriptor_suffix: "ZHMBC Donation",
-		};
+    const params = {
+      amount: Math.round(amount * 100), // cents
+      currency,
+      payment_method_types: ["card"],
+      metadata: { source: "donations-api", ...(metadata || {}) },
+      statement_descriptor_suffix: "ZHMBC Donation",
+    };
 
-		if (email !== "") Object.assign(params, {receipt_email: email});
+    if (email !== "") Object.assign(params, { receipt_email: email });
 
-		const intent = await stripe.paymentIntents.create(params);
+    const intent = await stripe.paymentIntents.create(params);
 
-		return res.status(200).json({clientSecret: intent.client_secret});
-	} catch (err: any) {
-		console.error(err);
-		return res.status(500).json({message: err?.message || "Stripe error"});
-	}
+    return res.status(200).json({ clientSecret: intent.client_secret });
+  } catch (err: any) {
+    console.error(err);
+    return res.status(500).json({ message: err?.message || "Stripe error" });
+  }
 });
 
 // /**
