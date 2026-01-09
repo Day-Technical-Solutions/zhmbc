@@ -17,6 +17,16 @@ export default function Apply() {
 		link.remove();
 	};
 
+	const handleDownloadAnnouncement = () => {
+		const link = document.createElement("a");
+		link.href = "/files/ZHMBC_Pastoral_Vacancy_Announcment";
+		link.download = "ZHMBC-Pastoral-Vacancy-Announcment.docx";
+		link.rel = "noopener";
+		document.body.appendChild(link);
+		link.click();
+		link.remove();
+	};
+
 	return (
 		<main className="flex-1 w-full">
 			{/* Hero Section */}
@@ -161,7 +171,7 @@ export default function Apply() {
 								</CardHeader>
 								<CardContent className="space-y-4">
 									<Button
-										onClick={handleDownloadApplication}
+										onClick={handleDownloadAnnouncement}
 										className="w-full text-lg py-6 bg-indigo-600 hover:bg-indigo-700"
 										size="lg">
 										<Download className="mr-2 h-5 w-5" />
