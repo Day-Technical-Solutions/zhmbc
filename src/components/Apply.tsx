@@ -205,7 +205,7 @@ export default function Apply() {
                     size="lg"
                   >
                     <Download className="mr-2 h-5 w-5" />
-                    Download Announcement (.docx)
+                    Download Announcement (.pdf)
                   </Button>
                   <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
                     <Printer className="h-4 w-4" />
