@@ -71,15 +71,15 @@ export default function Apply() {
               The Call to Senior Pastoral Ministry
             </h2>
             <p className="text-lg text-muted-foreground mb-4">
-              The position of Senior Pastor at ZHMBC is a sacred responsibility
-              that requires spiritual maturity, theological depth, and a proven
-              track record of faithful ministry. We seek a shepherd who will
-              lead our congregation with wisdom, compassion, and unwavering
-              commitment to God&apos;s Word.
+              The position of Senior Pastor at Zion Hope Missionary Baptist
+              Church is a sacred responsibility that requires spiritual
+              maturity, theological depth, and a proven track record of faithful
+              ministry. We seek a shepherd who will lead our congregation with
+              wisdom, compassion, and unwavering commitment to God&apos;s Word.
             </p>
             <p className="text-lg text-muted-foreground">
               Due to the significance of this role, we require all applications
-              to be submitted via mail. This allows our pastoral search
+              to be submitted via mail or email. This allows our pastoral search
               committee to give each application the careful, prayerful
               consideration it deserves.
             </p>
@@ -96,8 +96,8 @@ export default function Apply() {
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-base">
-                  Master of Divinity or equivalent theological degree from an
-                  accredited seminary is required.
+                  Master of Divinity or equivalent from an accredited seminary
+                  is preferable.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -111,8 +111,8 @@ export default function Apply() {
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-base">
-                  Minimum of 10 years in pastoral ministry, with at least 5
-                  years in a senior leadership role.
+                  Minimum of 5 years in pastoral ministry or in a senior
+                  leadership role.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -126,8 +126,8 @@ export default function Apply() {
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-base">
-                  Must be ordained and in good standing within the Baptist
-                  denomination or affiliated fellowship.
+                  Must be a lisenced and ordained minister in the body of
+                  Christ.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -344,7 +344,7 @@ export default function Apply() {
                 },
                 {
                   title: "Sermon Samples",
-                  desc: "USB drive with 2 recent sermon recordings",
+                  desc: "USB drive or video links with 2 recent sermon recordings",
                 },
                 {
                   title: "Reference Letters",
