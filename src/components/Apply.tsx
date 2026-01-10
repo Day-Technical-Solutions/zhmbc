@@ -257,7 +257,7 @@ export default function Apply() {
 									<div className="space-y-3">
 										<div className="flex items-center gap-3">
 											<Phone className="h-5 w-5 text-indigo-600" />
-											<span>(305) 696-4341</span>
+											<span>(786)-703-5278</span>
 										</div>
 										<div className="flex items-center gap-3">
 											<Mail className="h-5 w-5 text-indigo-600" />
