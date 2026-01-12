@@ -19,7 +19,7 @@ const items = [
 	{icon: Home, label: "Home", href: "/"},
 	{icon: Calendar, label: "Services", href: "/#services"},
 	{icon: MapPin, label: "Location", href: "/#location"},
-	{icon: Calendar, label: "Events", href: "/events"},
+	// {icon: Calendar, label: "Events", href: "/events"},
 	{icon: Info, label: "About", href: "/about"},
 	{icon: Download, label: "Pastoral Application", href: "/apply"},
 	// {icon: Star, label: "Destiny", href: "/destiny"},

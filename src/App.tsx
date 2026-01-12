@@ -6,7 +6,7 @@ import {stripePromise} from "./lib/stripe";
 import Layout from "./components/Layout";
 import Home from "./components/Home";
 import NoPage from "./components/NoPage";
-import Events from "./components/Events";
+// import Events from "./components/Events";
 import About from "./components/About";
 import Donations from "./components/Donations";
 import Contact from "./components/Contact";
@@ -19,7 +19,7 @@ export default function App() {
 		<Routes>
 			<Route path="/" element={<Layout />}>
 				<Route index element={<Home />} />
-				<Route path="/events" element={<Events />} />
+				{/* <Route path="/events" element={<Events />} /> */}
 				{/* <Route path="/members" element={<Members />} /> */}
 				<Route path="/about" element={<About />} />
 				{/* <Route path="/destiny" element={<Destiny />} /> */}
