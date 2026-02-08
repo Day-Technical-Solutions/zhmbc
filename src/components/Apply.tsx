@@ -19,8 +19,8 @@ export default function Apply() {
 
 	const handleDownloadAnnouncement = () => {
 		const link = document.createElement("a");
-		link.href = "/files/ZHMBC_Pastoral_Vacancy_Announcment.pdf";
-		link.download = "ZHMBC-Pastoral-Vacancy-Announcment.pdf";
+		link.href = "/files/ZHMBC_Pastoral_Vacancy_Announcment.docx";
+		link.download = "ZHMBC-Pastoral-Vacancy-Announcment.docx";
 		link.rel = "noopener";
 		document.body.appendChild(link);
 		link.click();
@@ -172,7 +172,7 @@ export default function Apply() {
 										className="w-full text-lg py-6 bg-indigo-600 hover:bg-indigo-700"
 										size="lg">
 										<Download className="mr-2 h-5 w-5" />
-										Download Announcement (.pdf)
+										Download Announcement (.docx)
 									</Button>
 									<div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
 										<Printer className="h-4 w-4" />
