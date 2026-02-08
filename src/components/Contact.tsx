@@ -114,7 +114,6 @@ export default function Contact() {
 							<div className="mt-12">
 								<h3 className="text-xl font-semibold mb-4">Office Hours</h3>
 								<div className="space-y-2 text-gray-600">
-									<p>Wednesday: 6:00 PM - 9:00 PM</p>
 									<p>Sunday: 9:00 AM - 11:00 AM</p>
 								</div>
 							</div>

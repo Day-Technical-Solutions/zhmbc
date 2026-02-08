@@ -43,7 +43,10 @@ export default function Home() {
 							<Clock className="h-12 w-12 text-indigo-600 mb-4" />
 							<h3 className="text-xl font-semibold mb-2">Sunday Worship</h3>
 							<p className="text-gray-600">
-								Join us every Sunday at 9:15 AM for our main worship service.
+								Every first and third Sunday at 9:15 AM for our main worship service.
+							</p>
+							<p className="text-gray-600">
+								Every second and fourth Sunday at 9:30 AM for our Sunday School service.
 							</p>
 						</div>
 						<div className="bg-white p-6 rounded-lg shadow-md">
