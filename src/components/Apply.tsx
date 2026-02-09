@@ -1,7 +1,7 @@
 /** @format */
 
 "use client";
-import {Download, Mail, MapPin, Phone, Clock, FileText, CheckCircle, Printer} from "lucide-react";
+import {Download, Mail, MapPin, Clock, FileText, CheckCircle, Printer} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import HeroPhoto from "/images/church_pulpit.jpg";
@@ -182,7 +182,6 @@ export default function Apply() {
 										{[
 											"Role Requirements and Responsibilites",
 											"Application Submission Instructions",
-											"Required Documentation",
 											"Committee Contact information",
 											"Resources",
 										].map((item, index) => (
@@ -198,7 +197,106 @@ export default function Apply() {
 					</div>
 				</div>
 			</section>
+			{/* Qualifications & Responsibilities Section */}
+			<section className="py-16 bg-background">
+				<div className="container mx-auto px-4">
+					<div className="max-w-5xl mx-auto">
+						<h2 className="text-3xl font-bold text-center mb-12">
+							Qualifications & Responsibilities
+						</h2>
+						<div className="container mx-auto px-4">
+							<div className="max-w-4xl mx-auto text-center mb-12">
+								<p className="text-lg text-muted-foreground">
+									Qualifications and giftedness should be pursuant to 1 Timothy 3:1-7; Titus 1:6-9;
+									1 Timothy 5:17, 2 Timothy 2:24-25 (Holy conduct), Malachi 3:10, (Tither), and
+									Galatians 5:22-23 (Christian Conduct).
+								</p>
+								<p className="text-lg text-muted-foreground">
+									The Pastor is responsible for growing the church ministries, serving as the
+									primary spiritual leader and shepherd of the congregation, preaching the Word of
+									God, and ensuring the overall spiritual health of the community while attracting
+									more worshipers.
+								</p>
+							</div>
+						</div>
+						<div className="grid md:grid-cols-2 gap-8">
+							{/* Qualifications */}
+							<Card className="border-2 border-indigo-200">
+								<CardHeader>
+									<div className="flex items-center gap-3">
+										<div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
+											<CheckCircle className="h-6 w-6 text-indigo-600" />
+										</div>
+										<CardTitle className="text-xl">Qualifications</CardTitle>
+									</div>
+								</CardHeader>
 
+								<CardContent>
+									<ul className="space-y-3">
+										{[
+											"Possess a clear understanding of the Baptist Doctrine and Articles of Faith",
+											"Must be a licensed, ordained minister in accordance with the Baptist Doctrine",
+											"Prefer bachelor’s degree and/or accredited seminary degree",
+											"Demonstrates an understanding of church management and structure",
+											"Possess effective administrative skills and can organize and lead staff.",
+											"Ability to work effectively with a congregation across all ages and genders.",
+											"A Visionary with sound judgement and discernment.",
+											"Deliver biblically sound lessons and messages.",
+											"Exceptional written, oral communication and organizational skills.",
+											"Basic technological skills, i.e., Microsoft 365, word, excel, streaming (optional).",
+											"Minimum of 5 years pastoral and/or ministerial experience.",
+											"Record of successful community involvement.",
+										].map((item, index) => (
+											<li key={index} className="flex items-start gap-3">
+												<CheckCircle className="h-5 w-5 text-indigo-600 mt-0.5 flex-shrink-0" />
+												<span className="text-muted-foreground">{item}</span>
+											</li>
+										))}
+									</ul>
+								</CardContent>
+							</Card>
+
+							{/* Responsibilities */}
+							<Card className="border-2 border-indigo-200">
+								<CardHeader>
+									<div className="flex items-center gap-3">
+										<div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
+											<FileText className="h-6 w-6 text-indigo-600" />
+										</div>
+										<CardTitle className="text-xl">Responsibilities</CardTitle>
+									</div>
+								</CardHeader>
+								<CardContent>
+									<ul className="space-y-3">
+										{[
+											"Plan and lead worship services, preach and teach sound biblical sermons, and serve as the lead in the observance and officiation of the church ordinances and ceremonies (communion, baptism, weddings, baby dedications, funerals, etc.).",
+											"Visitations to sick and shut-in members of the congregation, as needed.",
+											"Lead and teach members and visitors in weekly prayer meetings and bible study.",
+											"Facilitate church meetings and work collaboratively with the Board of Directors, Trustees and Deacons.",
+											"Demonstrate financial oversight and responsibility.",
+											"Develop and support religious education programs for children, youth, and young adults.",
+											"Ability to keep personal member information confidential and skilled in relationship building.",
+											"Able to articulate a well-developed vision for the church that emphasizes spiritual growth and development.",
+											"Develop a clear vision for church evangelism and outreach.",
+											"Seeking opportunities for spiritual learning and growth.",
+											"Be committed to church growth and membership retention.",
+											"Establish presence in the community through outreach and mission programs and projects.",
+											"Provide oversight to all ministerial, administrative, and music ministry staff and work with all church ministries.",
+											"Display the ability to lead within the framework of church bylaws.",
+											"Able to interact effectively with a multi-cultural and diverse community.",
+										].map((item, index) => (
+											<li key={index} className="flex items-start gap-3">
+												<CheckCircle className="h-5 w-5 text-indigo-600 mt-0.5 flex-shrink-0" />
+												<span className="text-muted-foreground">{item}</span>
+											</li>
+										))}
+									</ul>
+								</CardContent>
+							</Card>
+						</div>
+					</div>
+				</div>
+			</section>
 			{/* Mailing Information Section */}
 			<section className="py-16 bg-background">
 				<div className="container mx-auto px-4">
@@ -242,23 +340,23 @@ export default function Apply() {
 								<CardHeader>
 									<div className="flex items-center gap-3">
 										<div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
-											<Phone className="h-6 w-6 text-indigo-600" />
+											<Mail className="h-6 w-6 text-indigo-600" />
 										</div>
 										<div>
-											<CardTitle>Questions?</CardTitle>
-											<CardDescription>Contact the search committee:</CardDescription>
+											<CardTitle>Email Your Application</CardTitle>
+											<CardDescription>Send completed application to:</CardDescription>
 										</div>
 									</div>
 								</CardHeader>
 								<CardContent className="space-y-4">
-									<div className="space-y-3">
-										<div className="flex items-center gap-3">
-											<Phone className="h-5 w-5 text-indigo-600" />
-											<span>(786)-703-5278</span>
-										</div>
+									<div className="bg-muted/50 p-6 rounded-lg space-y-2">
 										<div className="flex items-center gap-3">
 											<Mail className="h-5 w-5 text-indigo-600" />
 											<span>zhmbc17@gmail.com</span>
+										</div>
+										<div className="flex items-center gap-3">
+											<p className="font-bold">Subject:</p>
+											<p className="text-md"> ATTN: Pastoral Search Committee</p>
 										</div>
 									</div>
 									<p className="text-sm text-muted-foreground pt-4 border-t">
