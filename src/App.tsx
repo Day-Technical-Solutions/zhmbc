@@ -7,7 +7,7 @@ import Layout from "./components/Layout";
 import Home from "./components/Home";
 import NoPage from "./components/NoPage";
 // import Events from "./components/Events";
-import About from "./components/About";
+// import About from "./components/About";
 import Donations from "./components/Donations";
 import Contact from "./components/Contact";
 import PrayerRequest from "./components/PrayerReq";
@@ -21,7 +21,7 @@ export default function App() {
 				<Route index element={<Home />} />
 				{/* <Route path="/events" element={<Events />} /> */}
 				{/* <Route path="/members" element={<Members />} /> */}
-				<Route path="/about" element={<About />} />
+				{/* <Route path="/about" element={<About />} /> */}
 				{/* <Route path="/destiny" element={<Destiny />} /> */}
 				<Route path="/apply" element={<Apply />} />
 				<Route

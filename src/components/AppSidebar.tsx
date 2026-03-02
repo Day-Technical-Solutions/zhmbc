@@ -1,6 +1,6 @@
 /** @format */
 
-import {Calendar, Heart, Home, Info, MapPin, Phone, HandHeart, Download} from "lucide-react";
+import {Calendar, Heart, Home, MapPin, Phone, HandHeart, Download} from "lucide-react";
 
 import {
 	Sidebar,
@@ -20,7 +20,7 @@ const items = [
 	{icon: Calendar, label: "Services", href: "/#services"},
 	{icon: MapPin, label: "Location", href: "/#location"},
 	// {icon: Calendar, label: "Events", href: "/events"},
-	{icon: Info, label: "About", href: "/about"},
+	// {icon: Info, label: "About", href: "/about"},
 	{icon: Download, label: "Pastoral Application", href: "/apply"},
 	// {icon: Star, label: "Destiny", href: "/destiny"},
 	// { icon: Users, label: "Members", href: "/members" },

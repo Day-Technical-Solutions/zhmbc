@@ -20,11 +20,11 @@ export function Footer() {
 									Home
 								</Link>
 							</li>
-							<li>
+							{/* <li>
 								<Link to="/about" className="text-gray-400 hover:text-white">
 									About
 								</Link>
-							</li>
+							</li> */}
 							<li>
 								<Link to="/#services" className="text-gray-400 hover:text-white">
 									Services

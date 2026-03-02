@@ -236,7 +236,7 @@ export default function Apply() {
 										{[
 											"Possess a clear understanding of the Baptist Doctrine and Articles of Faith",
 											"Must be a licensed, ordained minister in accordance with the Baptist Doctrine",
-											"Prefer bachelor’s degree and/or accredited seminary degree",
+											"Bachelor's Degree (Optional) and/or accredited seminary degree (preferred)",
 											"Demonstrates an understanding of church management and structure",
 											"Possess effective administrative skills and can organize and lead staff.",
 											"Ability to work effectively with a congregation across all ages and genders.",
